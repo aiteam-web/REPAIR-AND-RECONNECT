@@ -64,7 +64,7 @@ const approachData: Record<string, {
     showCopy: false,
   },
   reflect: {
-    emoji: "🪞",
+    emoji: "💭",
     why: "Reflection builds self-awareness, which is the foundation of every healthy relationship.",
     insight: "Journaling or even thinking through what happened helps you process emotions without pressure.",
     howTitle: "🔍 Look inward",
