@@ -3,13 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 
 const approachData: Record<string, {
+  emoji: string;
   why: string;
   insight: string;
   howTitle: string;
   howBody: string;
   messages: string[];
+  showCopy: boolean;
 }> = {
   message: {
+    emoji: "💬",
     why: "A simple message can break the silence and show the other person you still care.",
     insight: "Research shows that reaching out—even imperfectly—is almost always received better than we expect.",
     howTitle: "Start small",
@@ -19,8 +22,10 @@ const approachData: Record<string, {
       "I know things were tense—just wanted to say I care.",
       "I'm sorry about earlier. Can we talk when you're ready?",
     ],
+    showCopy: true,
   },
   acknowledge: {
+    emoji: "🫶",
     why: "Acknowledging what happened shows maturity and helps the other person feel seen.",
     insight: "People don't need you to be perfect—they need to know you noticed.",
     howTitle: "Name it gently",
@@ -30,39 +35,46 @@ const approachData: Record<string, {
       "I realize I may have come across harshly. That wasn't my intention.",
       "I've been reflecting on what happened, and I wish I'd handled it differently.",
     ],
+    showCopy: true,
   },
   pause: {
+    emoji: "⏸️",
     why: "Committing to a pause next time gives you space to respond rather than react.",
     insight: "A 6-second pause is often enough to shift from reaction to reflection.",
-    howTitle: "Plan your pause",
+    howTitle: "🧘 Plan your pause",
     howBody: "Think of a simple cue—like taking a breath or stepping away briefly—before responding.",
     messages: [
       "Next time I feel upset, I'll take a deep breath before responding.",
       "I'll try saying 'Give me a moment' instead of reacting immediately.",
       "I'll step away for a few minutes to collect my thoughts.",
     ],
+    showCopy: false,
   },
   letgo: {
+    emoji: "🍃",
     why: "Sometimes the kindest thing you can do is release the weight of the situation.",
     insight: "Letting go isn't giving up—it's choosing peace over being right.",
-    howTitle: "Release gently",
+    howTitle: "🕊️ Release gently",
     howBody: "You don't have to forget. Just decide that this doesn't need to control how you feel anymore.",
     messages: [
       "I'm choosing to let this go—not because it didn't matter, but because my peace matters more.",
       "I release the need to be right about this. I choose connection.",
       "This situation doesn't define our relationship. I'm moving forward.",
     ],
+    showCopy: false,
   },
   reflect: {
+    emoji: "🪞",
     why: "Reflection builds self-awareness, which is the foundation of every healthy relationship.",
     insight: "Journaling or even thinking through what happened helps you process emotions without pressure.",
-    howTitle: "Look inward",
+    howTitle: "🔍 Look inward",
     howBody: "Ask yourself: What was I really feeling underneath the anger? Often it's hurt, fear, or disappointment.",
     messages: [
       "Underneath my anger, I think I was feeling hurt.",
       "I realize I was reacting out of fear of not being heard.",
       "What I really needed was to feel respected and valued.",
     ],
+    showCopy: false,
   },
 };
 
@@ -88,12 +100,11 @@ const GuidedActionScreen = ({ approach, onComplete }: Props) => {
     toast.success("Message copied!");
   };
 
-
   return (
     <div className="glass-card p-8 space-y-5">
       {/* Why this helps */}
       <div className="space-y-2">
-        <p className="font-body text-sm text-foreground leading-relaxed">{data.why}</p>
+        <p className="font-body text-sm text-foreground leading-relaxed">{data.emoji} {data.why}</p>
         <p className="font-body text-xs text-muted-foreground italic">💡 {data.insight}</p>
       </div>
 
@@ -128,7 +139,9 @@ const GuidedActionScreen = ({ approach, onComplete }: Props) => {
 
       {/* Message options */}
       <div className="space-y-2">
-        <p className="font-heading text-sm font-medium text-foreground">Choose a starting point:</p>
+        <p className="font-heading text-sm font-medium text-foreground">
+          {data.showCopy ? "Choose a starting point:" : "Choose what resonates:"}
+        </p>
         <div className="space-y-2">
           {data.messages.map((msg, i) => (
             <motion.button
@@ -160,12 +173,14 @@ const GuidedActionScreen = ({ approach, onComplete }: Props) => {
 
       {/* Actions */}
       <div className="flex gap-3">
-        <button
-          onClick={handleCopy}
-          className="flex-1 glass-card py-3 font-heading text-sm font-medium text-foreground hover:scale-[1.02] active:scale-[0.98] transition-all"
-        >
-          📋 Copy Message
-        </button>
+        {data.showCopy && (
+          <button
+            onClick={handleCopy}
+            className="flex-1 glass-card py-3 font-heading text-sm font-medium text-foreground hover:scale-[1.02] active:scale-[0.98] transition-all"
+          >
+            📋 Copy Message
+          </button>
+        )}
         <button
           onClick={onComplete}
           className="flex-1 btn-gradient py-3 font-heading text-sm font-medium hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -176,7 +191,7 @@ const GuidedActionScreen = ({ approach, onComplete }: Props) => {
 
       {/* Safety line */}
       <p className="font-body text-xs text-muted-foreground text-center italic">
-        You don't have to send anything right now. 💛
+        {data.showCopy ? "You don't have to send anything right now. 💛" : "Take your time—there's no rush. 💛"}
       </p>
     </div>
   );
