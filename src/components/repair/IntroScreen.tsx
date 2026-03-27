@@ -7,17 +7,15 @@ interface Props {
 }
 
 const IntroScreen = ({ onStart, onBack }: Props) => (
-  <div className="relative">
+    <div className="glass-card p-8 text-center space-y-6 relative">
     {onBack && (
       <button
         onClick={onBack}
-        className="absolute top-0 left-0 p-2 text-muted-foreground hover:text-foreground transition-colors"
+        className="absolute top-3 left-3 p-2 text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="w-5 h-5" />
       </button>
     )}
-
-    <div className="glass-card p-8 text-center space-y-6">
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
