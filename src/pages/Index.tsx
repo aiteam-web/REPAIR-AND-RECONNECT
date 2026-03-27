@@ -51,6 +51,7 @@ const Index = () => {
             )}
             {step === 2 && (
               <ChooseApproachScreen
+                person={person}
                 selected={approach}
                 onSelect={setApproach}
                 onContinue={next}

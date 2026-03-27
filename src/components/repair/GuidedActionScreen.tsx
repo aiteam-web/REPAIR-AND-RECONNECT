@@ -171,10 +171,10 @@ const GuidedActionScreen = ({ approach, onComplete }: Props) => {
           📋 Copy Message
         </button>
         <button
-          onClick={handleSend}
+          onClick={onComplete}
           className="flex-1 btn-gradient py-3 font-heading text-sm font-medium hover:scale-[1.02] active:scale-[0.98] transition-all"
         >
-          Send →
+          I'm Done →
         </button>
       </div>
 
