@@ -88,10 +88,6 @@ const GuidedActionScreen = ({ approach, onComplete }: Props) => {
     toast.success("Message copied!");
   };
 
-  const handleSend = () => {
-    toast.success("Message ready to send! 💬");
-    onComplete();
-  };
 
   return (
     <div className="glass-card p-8 space-y-5">
@@ -171,10 +167,10 @@ const GuidedActionScreen = ({ approach, onComplete }: Props) => {
           📋 Copy Message
         </button>
         <button
-          onClick={handleSend}
+          onClick={onComplete}
           className="flex-1 btn-gradient py-3 font-heading text-sm font-medium hover:scale-[1.02] active:scale-[0.98] transition-all"
         >
-          Send →
+          I'm Done →
         </button>
       </div>
 
