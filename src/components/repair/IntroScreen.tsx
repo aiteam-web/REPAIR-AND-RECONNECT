@@ -48,7 +48,6 @@ const IntroScreen = ({ onStart, onBack }: Props) => (
         Start →
       </button>
     </div>
-  </div>
 );
 
 export default IntroScreen;
