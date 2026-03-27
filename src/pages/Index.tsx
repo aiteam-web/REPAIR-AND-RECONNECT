@@ -41,7 +41,7 @@ const Index = () => {
             exit="exit"
             transition={{ duration: 0.35, ease: "easeOut" }}
           >
-            {step === 0 && <IntroScreen onStart={next} />}
+            {step === 0 && <IntroScreen onStart={next} onBack={() => window.history.back()} />}
             {step === 1 && (
               <ChoosePersonScreen
                 selected={person}
