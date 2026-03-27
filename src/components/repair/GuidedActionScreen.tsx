@@ -88,10 +88,6 @@ const GuidedActionScreen = ({ approach, onComplete }: Props) => {
     toast.success("Message copied!");
   };
 
-  const handleSend = () => {
-    toast.success("Message ready to send! 💬");
-    onComplete();
-  };
 
   return (
     <div className="glass-card p-8 space-y-5">
